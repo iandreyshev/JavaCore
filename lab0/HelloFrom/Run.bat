@@ -1,11 +1,16 @@
-@ECHO OFF
+@echo off
 set NAME="%~1"
-@ECHO ON
+set COMPILE=javac @CompileOptions.txt
+set PROGRAM=java -cp build/ ru.iandreyshev.hellofrom.HelloFrom
 
-rem Normal output
-javac @CompileOptions.txt
-java -cp build/ ru.iandreyshev.hellofrom.HelloFrom %NAME%
+echo: Test: Normal argument
+%COMPILE%
+%PROGRAM% %NAME%
 
-rem No args output
-javac @CompileOptions.txt
-java -cp build/ ru.iandreyshev.hellofrom.HelloFrom
+echo: Test: No args
+%COMPILE%
+%PROGRAM%
+
+echo: Test: Empty argument
+%COMPILE%
+%PROGRAM% ""

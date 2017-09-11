@@ -7,6 +7,11 @@ class HelloFrom {
 			return;
 		}
 
+		if (args[0] == "") {
+			System.out.println(MyConst.EMPTY_NAME_ERROR);
+			return;
+		}
+
 		PrintMessage(args[0]);
 	}
 
@@ -15,6 +20,6 @@ class HelloFrom {
 		System.out.printf("%s ", System.getProperty(MyConst.OS_NAME_KEY));
 		System.out.printf("%s ", System.getProperty(MyConst.OS_VERSION_KEY));
 		System.out.printf("%s ", System.getProperty(MyConst.JDK_VERSION_KEY));
-		System.out.println(System.getProperty(MyConst.JDK_PATH_KEY));
+		System.out.println(System.getenv(MyConst.JDK_PATH_KEY));
 	}
 }
