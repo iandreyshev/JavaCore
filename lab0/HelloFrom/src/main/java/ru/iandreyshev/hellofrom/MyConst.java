@@ -9,5 +9,5 @@ class MyConst {
 	public static final String ARGS_COUNT_ERROR = "Invalid arguments count. Use: HelloFrom <name>";
 	public static final String EMPTY_NAME_ERROR = "Name can not be empty.";
 
-	public static Integer ARGS_COUNT = 1;
+	public static Integer MIN_ARGS_COUNT = 1;
 }

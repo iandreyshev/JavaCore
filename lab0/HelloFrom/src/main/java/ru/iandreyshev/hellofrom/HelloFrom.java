@@ -2,17 +2,27 @@ package ru.iandreyshev.hellofrom;
 
 class HelloFrom {
 	public static void main(String[] args) {
-		if (args.length < MyConst.ARGS_COUNT) {
+		if (args.length < MyConst.MIN_ARGS_COUNT) {
 			System.out.println(MyConst.ARGS_COUNT_ERROR);
 			return;
 		}
 
-		if (args[0].compareTo("") == 0) {
+		String name = ConcatArgs(args);
+
+		if (name.compareTo("") == 0) {
 			System.out.println(MyConst.EMPTY_NAME_ERROR);
 			return;
 		}
 
-		PrintMessage(args[0]);
+		PrintMessage(name);
+	}
+
+	private static String ConcatArgs(String[] args) {
+		String result = "";
+		for (Integer i = 0; i < args.length; i++) {
+			result += args[i];
+		}
+		return result;
 	}
 
 	private static void PrintMessage(String name) {

@@ -7,6 +7,10 @@ echo: Test: Normal argument
 %COMPILE%
 %PROGRAM% %NAME%
 
+echo: Test: Two names
+%COMPILE%
+%PROGRAM% %NAME% %NAME%
+
 echo: Test: No args
 %COMPILE%                                                                
 %PROGRAM%
