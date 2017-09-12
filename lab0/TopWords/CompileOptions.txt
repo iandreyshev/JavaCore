@@ -1,2 +1,3 @@
--d build/                                          
+-d build/
+src/main/java/ru/iandreyshev/topwords/WordsCounter.java                                          
 src/main/java/ru/iandreyshev/topwords/TopWords.java

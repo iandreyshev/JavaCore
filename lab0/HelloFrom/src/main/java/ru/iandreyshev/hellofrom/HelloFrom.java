@@ -7,7 +7,7 @@ class HelloFrom {
 			return;
 		}
 
-		if (args[0] == "") {
+		if (args[0].compareTo("") == 0) {
 			System.out.println(MyConst.EMPTY_NAME_ERROR);
 			return;
 		}
