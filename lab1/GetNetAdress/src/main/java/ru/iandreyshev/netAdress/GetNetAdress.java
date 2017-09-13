@@ -11,16 +11,10 @@ class GetNetAdress {
 		try {
 			IPAdress adress = new IPAdress(args[0]);
 			IPAdress netMask = new IPAdress(args[1]);
-
-			System.out.println(adress.toString());
-			System.out.println(netMask.toString());
-
 			IPAdress netAdress = IPAdress.getNetAdress(adress, netMask);
-
 			if (netAdress == null) {
 				throw new Exception("Net adress is null");
 			}
-
 			System.out.println(netAdress.toString());
 		}
 		catch (Exception e) {
