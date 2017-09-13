@@ -4,13 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class IPAdress {
-	public IPAdress(String name) {
+	public IPAdress(String name) throws IllegalArgumentException {
 		if (!isNameValid(name)) {
-			System.out.println("Name not valid.");
-			return;
+			throw new IllegalArgumentException("Invalid ip adress name.\n" +
+				"Use: [0-255].[0-255].[0-255].[0-255]");
 		}
 
-		InitParts(name);
+		String[] parts = name.split(SEPARATOR);
+		m_firstPart = Integer.parseInt(parts[0]);
+		m_secondPart = Integer.parseInt(parts[1]);
+		m_thirdPart = Integer.parseInt(parts[2]);
+		m_fourthPart = Integer.parseInt(parts[3]);
 	}
 	public IPAdress(Integer first, Integer second, Integer third, Integer fourth) {
 		m_firstPart = first;
@@ -48,13 +52,5 @@ class IPAdress {
 		Pattern pattern = Pattern.compile(NAME_PATTERN);
 		Matcher matcher = pattern.matcher(name);
 		return matcher.matches();
-	}
-
-	private void InitParts(String name) {
-		String[] parts = name.split(SEPARATOR);
-		m_firstPart = Integer.parseInt(parts[0]);
-		m_secondPart = Integer.parseInt(parts[1]);
-		m_thirdPart = Integer.parseInt(parts[2]);
-		m_fourthPart = Integer.parseInt(parts[3]);
 	}
 }
