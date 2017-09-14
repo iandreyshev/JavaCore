@@ -5,11 +5,11 @@ import ru.iandreyshev.utils.StrUtils;
 class CaesarCipher {
 	public static void main(String[] args) {
 		try {
-			validateArgs(args);
+			prepareArgs(args);
 
-			String workType = StrUtils.clearExtraSpaces(args[0]);
-			String key = StrUtils.clearExtraSpaces(args[1]);
-			String str = StrUtils.clearExtraSpaces(args[2]);
+			for (Integer i = 0; i < args.length; i++) {
+				System.out.println(args[i]);
+			}
 		}
 		catch (Exception e) {
 			System.out.println(e.toString());
@@ -17,12 +17,26 @@ class CaesarCipher {
 		}
 	}
 
-	private static void validateArgs(String[] args) {
+	private static void prepareArgs(String[] args) {
 		if (args.length < ARGUMENTS_COUNT) {
-			throw new IllegalArgumentException("Invalid arguments count.\n" +
-				"Use: CaesarCipher.exe <work type(-e / -d)> <key> <string>.");
+			throw new IllegalArgumentException(CaesarCipherErrors.INVALID_ARGS);
+		}
+
+		for (Integer i = 0; i < ARGUMENTS_COUNT; i++) {
+			args[i] = StrUtils.clearExtraSpaces(args[i]);
+			if (args[i].compareTo("") == 0) {
+				throw new IllegalArgumentException("Arguments can`t be empty.");
+			}
 		}
 	}
 
 	private static final Integer ARGUMENTS_COUNT = 3;
+	private static enum WorkType {
+		ENCODE,
+		DECODE,
+	}
+
+	private static String encode(String str, Integer key, WorkType workType) {
+		return "";
+	}
 }
