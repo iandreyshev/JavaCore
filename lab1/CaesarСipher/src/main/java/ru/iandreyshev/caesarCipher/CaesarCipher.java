@@ -11,9 +11,6 @@ class CaesarCipher {
 			}
 
 			clearExtraSpacesFromArgs(args);
-			for (Integer i = 0; i < args.length; i++) {
-				System.out.println(args[i]);
-			}
 		}
 		catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -33,15 +30,15 @@ class CaesarCipher {
 	}
 
 	private static void clearExtraSpacesFromArgs(String[] args) {
-		StrUtils.clearExtraSpaces(args[0]);
+		args[0] = StrUtils.clearExtraSpaces(args[0]);
 		if (args[0].compareTo("") == 0) {
-			throw new IllegalArgumentException("Work type can not be empty. " +
+			throw new IllegalArgumentException("Work type can not be empty.\n" +
 				"Use: '-e' to encode or '-d' to decode.");
 		}
 
-		StrUtils.clearExtraSpaces(args[1]);
+		args[1] = StrUtils.clearExtraSpaces(args[1]);
 		if (args[1].compareTo("") == 0) {
-			throw new IllegalArgumentException("Cipher key can not be empty. " +
+			throw new IllegalArgumentException("Cipher key can not be empty.\n" +
 				"Use value from 0 to " + MAX_KEY.toString() + ".");
 		}
 	}

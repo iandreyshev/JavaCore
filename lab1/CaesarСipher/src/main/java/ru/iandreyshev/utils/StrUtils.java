@@ -1,7 +1,7 @@
 package ru.iandreyshev.utils;
 
 public class StrUtils {
-	public static void clearExtraSpaces(String str) {
+	public static String clearExtraSpaces(String str) {
 		Integer startPos = 0;
 		for (; startPos < str.length(); startPos++) {
 			if (str.charAt(startPos) != SPACE) {
@@ -10,7 +10,7 @@ public class StrUtils {
 		}
 
 		if (startPos >= str.length()) {
-			return;
+			return "";
 		}
 
 		Integer endPos = str.length() - 1;
@@ -24,7 +24,7 @@ public class StrUtils {
 		for (; startPos <= endPos; startPos++) {
 			result += str.charAt(startPos);
 		}
-		str = result;
+		return result;
 	}
 
 	private static char SPACE = ' ';
