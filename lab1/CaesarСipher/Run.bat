@@ -40,10 +40,18 @@ echo:  Cipher key is -1
 %PROGRAM% ENCODE "-1" "string" > %TMP_OUT%
 fc %TMP_OUT% reference/invalid_work_type.txt
 if ERRORLEVEL 1 goto err
+  
 echo:  Cipher key is 1000000000000
 %PROGRAM% ENCODE "1000000000000" "string" > %TMP_OUT%
 fc %TMP_OUT% reference/invalid_work_type.txt
 if ERRORLEVEL 1 goto err
+
+echo:Cipher key is AAA
+%PROGRAM% ENCODE "AAA" "string" > %TMP_OUT%
+fc %TMP_OUT% reference/invalid_work_type.txt
+if ERRORLEVEL 1 goto err
+
+%PROGRAM% -d 1 string
 
 echo:Program testing succeeded
 exit 0

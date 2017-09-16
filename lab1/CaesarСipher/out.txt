@@ -1,0 +1,39 @@
+Текущая кодовая страница: 1251
+Run without the required number of arguments
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_ARGS_COUNT.TXT
+FC: различия не найдены
+
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_ARGS_COUNT.TXT
+FC: различия не найдены
+
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_ARGS_COUNT.TXT
+FC: различия не найдены
+
+Run with empty work type
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_WORK_TYPE.TXT
+FC: различия не найдены
+
+Run with empty cipher key
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_CIPHER_KEY.TXT
+FC: различия не найдены
+
+Run with invalid work type, work type is 100 
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_WORK_TYPE.TXT
+FC: различия не найдены
+
+Run with invalid cipher key
+  Cipher key is -1
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_WORK_TYPE.TXT
+FC: различия не найдены
+
+  Cipher key is 1000000000000
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_WORK_TYPE.TXT
+FC: различия не найдены
+
+Cipher key is AAA
+Сравнение файлов C:\USERS\IVAN\APPDATA\LOCAL\TEMP\out.txt и REFERENCE/INVALID_WORK_TYPE.TXT
+FC: различия не найдены
+
+a
+
+Program testing succeeded
