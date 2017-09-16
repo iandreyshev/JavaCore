@@ -7,7 +7,7 @@ set DECODE="-d"
 set TMP_OUT=%TEMP%\out.txt
 %COMPILE%
 
-echo:Запуск без необходимого количества аргументов
+echo:Run without the required number of arguments
 %PROGRAM% > %TMP_OUT%
 fc %TMP_OUT% reference/invalid_args_count.txt
 if ERRORLEVEL 1 goto err
@@ -20,18 +20,34 @@ if ERRORLEVEL 1 goto err
 fc %TMP_OUT% reference/invalid_args_count.txt
 if ERRORLEVEL 1 goto err
 
-echo:Запуск с пустым кодом или типом кодирования
-%PROGRAM% "    " 11 string > %TMP_OUT%   
-fc %TMP_OUT% reference/empty_work_type.txt
+echo:Run with empty work type
+%PROGRAM% "    " 11 "string" > %TMP_OUT%   
+fc %TMP_OUT% reference/invalid_work_type.txt
 if ERRORLEVEL 1 goto err
 
-%PROGRAM% "-e" "    " string > %TMP_OUT%
-fc %TMP_OUT% reference/empty_cipher_key.txt
+echo:Run with empty cipher key
+%PROGRAM% "-e" "    " "string" > %TMP_OUT%
+fc %TMP_OUT% reference/invalid_cipher_key.txt
 if ERRORLEVEL 1 goto err
 
-echo Program testing succeeded
+echo:Run with invalid work type, work type is 100 
+%PROGRAM% "100" "10" "string" > %TMP_OUT%
+fc %TMP_OUT% reference/invalid_work_type.txt
+if ERRORLEVEL 1 goto err
+
+echo:Run with invalid cipher key
+echo:  Cipher key is -1
+%PROGRAM% ENCODE "-1" "string" > %TMP_OUT%
+fc %TMP_OUT% reference/invalid_work_type.txt
+if ERRORLEVEL 1 goto err
+echo:  Cipher key is 1000000000000
+%PROGRAM% ENCODE "1000000000000" "string" > %TMP_OUT%
+fc %TMP_OUT% reference/invalid_work_type.txt
+if ERRORLEVEL 1 goto err
+
+echo:Program testing succeeded
 exit 0
 
 :err
-echo Program testing failed
+echo:Program testing failed
 exit 1
