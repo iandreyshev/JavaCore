@@ -52,30 +52,31 @@ class CaesarCipher {
 	}
 	private static Integer getCodeKey(String codeKeyStr) {
 		Integer result = 0;
-		Operationable operation = () -> {
-			throw new IllegalArgumentException("Invalid cipher key.\n" +
-				"Use values from 0 to " + MAX_KEY.toString() + ".");
-		};
 
 		try {
 			codeKeyStr = StrUtils.clearExtraSpaces(codeKeyStr);
 			result = Integer.parseInt(codeKeyStr);
 		}
 		catch (Exception e) {
-			operation.convertationError();
-		}
-
-		if (result < 0) {
-			operation.convertationError();
+			throw new IllegalArgumentException("Invalid cipher key.\n" +
+				"Use values from 0 to " + MAX_KEY.toString() + ".");
 		}
 
 		return result;
 	}
 	private static String encrypt(String str, Integer key, WorkType workType) {
-
-		System.out.println(moveToRightInEngAlphabet('A', 25));
+		if (key < 0) {
+			throw new IllegalArgumentException("Invalid cipher key.\n" +
+				"Use values from 0 to " + MAX_KEY.toString() + ".");
+		}
 
 		String result = "";
+		for (Integer i = 0; i < str.length(); i++) {
+			if (workType == WorkType.DECODE) {
+				key = 
+			}
+		}
+
 		return result;
 	}
 	private static char moveToRightInEngAlphabet(char ch, Integer movement) {
@@ -89,16 +90,10 @@ class CaesarCipher {
 		movement = movement % (MAX_MOVEMENT + 1);
 		boolean isUpper = Character.isUpperCase(ch);
 		Integer maxCode = (isUpper) ? MAX_UPPER_CODE : MAX_LOWER_CODE;
-		Integer minCode = (isUpper) ? MAX_LOWER_CODE : MIN_LOWER_CODE;
+		Integer minCode = (isUpper) ? MIN_UPPER_CODE : MIN_LOWER_CODE;
 		Integer newCode = ch + movement;
 		newCode = (newCode > maxCode) ? minCode + (newCode - maxCode) : newCode;
 
 		return Character.toChars(newCode)[0];
 	}
 }
-
-interface Operationable{
-	void convertationError();
-}
-
-//Character.toChars(43)
