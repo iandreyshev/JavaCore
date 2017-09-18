@@ -36,6 +36,7 @@ class CreatePassword {
 					"Invalid symbol in list at position: " + i.toString() + ".");
 			}
 		}
+
 		return symbolsList;
 	}
 	private static Integer getPassLength(String passLengthStr) {
