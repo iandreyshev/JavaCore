@@ -14,5 +14,5 @@ class TypesTable {
 
 	private static final String HEAD_PATTERN = "%-24s%-24s%-24s%-24s\n";
 	private static final String INT_PATTERN = "%-24s%-24d%-24d%-24d\n";
-	private static final String FLOAT_PATTERN = "%-24s%-24.1f%-24.1f%-24d\n";
+	private static final String FLOAT_PATTERN = "%-24s%-24e%-24e%-24d\n";
 }
