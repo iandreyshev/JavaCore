@@ -16,11 +16,8 @@ class CaesarCipher {
 			System.out.println(result);
 		}
 		catch (Exception e) {
-			System.out.println("CaesarCipher error:\n" + e.getMessage());
-			//System.exit(EXIT_FAILURE);
+			System.out.println(e.getMessage());
 		}
-
-		//System.exit(EXIT_SUCCESS);
 	}
 
 	private static final Integer ARGUMENTS_COUNT = 3;
@@ -33,7 +30,7 @@ class CaesarCipher {
 	private static final Integer MAX_UPPER_CODE = "Z".codePointAt(0);
 	private static final Integer MIN_LOWER_CODE = "a".codePointAt(0);
 	private static final Integer MIN_UPPER_CODE = "A".codePointAt(0);
-	private static final Integer MAX_MOVEMENT = MAX_LOWER_CODE - MIN_LOWER_CODE;
+	private static final Integer MAX_MOVEMENT = MAX_LOWER_CODE - MIN_LOWER_CODE + 1;
 	private static enum WorkType {
 		ENCODE,
 		DECODE,
@@ -70,29 +67,40 @@ class CaesarCipher {
 				"Use values from 0 to " + MAX_KEY.toString() + ".");
 		}
 
+		key = key % MAX_MOVEMENT;
+		switch(workType)
+		{
+			case ENCODE:
+			break;
+			case DECODE: key = MAX_MOVEMENT - key;
+			break;
+		}
+
 		String result = "";
 		for (Integer i = 0; i < str.length(); i++) {
-			if (workType == WorkType.DECODE) {
-				key = 
-			}
+			char newChar = moveToRightInEngAlphabet(str.charAt(i), key);
+			result += newChar;
 		}
 
 		return result;
 	}
 	private static char moveToRightInEngAlphabet(char ch, Integer movement) {
-		if (ch < 'A' || (ch > 'Z' && ch < 'a') || ch > 'z') {
-			throw new IllegalArgumentException("Illegal symbol in encode string.\n" +
-				"Use a-zA-Z alphabet only.");
-		} else if (movement <= 0) {
-			return ch;
+		if (ch < MIN_UPPER_CODE && ch > MAX_UPPER_CODE &&
+			ch < MIN_LOWER_CODE && ch > MAX_LOWER_CODE) {
+			throw new IllegalArgumentException("Invalid symbol in encode string.\n" +
+				"Use [a-zA-Z] alphabet only.");
+		} else if (movement < 0) {
+			movement = 0;
+		} else if (movement > MAX_MOVEMENT) {
+			movement = MAX_MOVEMENT;
 		}
 
-		movement = movement % (MAX_MOVEMENT + 1);
 		boolean isUpper = Character.isUpperCase(ch);
 		Integer maxCode = (isUpper) ? MAX_UPPER_CODE : MAX_LOWER_CODE;
 		Integer minCode = (isUpper) ? MIN_UPPER_CODE : MIN_LOWER_CODE;
+
 		Integer newCode = ch + movement;
-		newCode = (newCode > maxCode) ? minCode + (newCode - maxCode) : newCode;
+		newCode = (newCode > maxCode) ? (newCode - maxCode - 1) + minCode : newCode;
 
 		return Character.toChars(newCode)[0];
 	}

@@ -7,7 +7,7 @@ class CreatePassword {
 	public static void main(String[] args) {
 		try {
 			if (args.length < ARGUMENTS_COUNT) {
-				throw new IllegalArgumentException("Invalid arguments count. \n" +
+				throw new IllegalArgumentException("Invalid arguments count.\n" +
 					"Use: CreatePassword.exe <pass length> <symbols list>.");
 			}
 
@@ -16,7 +16,7 @@ class CreatePassword {
 			String password = getPassword(passLength, symbolsList);
 
 			System.out.println(password);
-		}
+			}
 		catch(Exception e) {
 			System.out.println("Error:\n" + e.getMessage());
 		}
@@ -25,10 +25,14 @@ class CreatePassword {
 	private static final Integer ARGUMENTS_COUNT = 2;
 	private static final Integer MIN_PASS_LENGHT = 6;
 	private static final Integer MAX_PASS_LENGTH = 36;
-	private static final char ALLOWED_SYMBOLS_BEGIN = ' ';
+	private static final char ALLOWED_SYMBOLS_BEGIN = ' ' + 1;
 	private static final char ALLOWED_SYMBOLS_END = '~';
 
 	private static String getSymbolsList(String symbolsList) {
+		if (symbolsList.length() == 0) {
+			throw new IllegalArgumentException("Symbols list can not be empty.");
+		}
+
 		for (Integer i = 0; i < symbolsList.length(); ++i) {
 			char ch = symbolsList.charAt(i);
 			if (ch < ALLOWED_SYMBOLS_BEGIN || ch > ALLOWED_SYMBOLS_END) {
@@ -41,7 +45,7 @@ class CreatePassword {
 	}
 	private static Integer getPassLength(String passLengthStr) {
 		IllegalArgumentException lengthException = new IllegalArgumentException(
-			"Invalid password length. Length can be from " +
+			"Invalid password length.\nLength can be from " +
 				MIN_PASS_LENGHT.toString() + " to " +
 				MAX_PASS_LENGTH.toString() + ".");
 		Integer result = MIN_PASS_LENGHT;
