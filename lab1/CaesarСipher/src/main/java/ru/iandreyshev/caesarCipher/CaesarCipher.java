@@ -72,14 +72,13 @@ class CaesarCipher {
 		{
 			case ENCODE:
 			break;
-			case DECODE: key = MAX_MOVEMENT - key;
+			case DECODE: key = (MAX_MOVEMENT - key);
 			break;
 		}
 
 		String result = "";
 		for (Integer i = 0; i < str.length(); i++) {
-			char newChar = moveToRightInEngAlphabet(str.charAt(i), key);
-			result += newChar;
+			result += moveToRightInEngAlphabet(str.charAt(i), key);
 		}
 
 		return result;
@@ -87,8 +86,7 @@ class CaesarCipher {
 	private static char moveToRightInEngAlphabet(char ch, Integer movement) {
 		if (ch < MIN_UPPER_CODE && ch > MAX_UPPER_CODE &&
 			ch < MIN_LOWER_CODE && ch > MAX_LOWER_CODE) {
-			throw new IllegalArgumentException("Invalid symbol in encode string.\n" +
-				"Use [a-zA-Z] alphabet only.");
+			movement = 0;
 		} else if (movement < 0) {
 			movement = 0;
 		} else if (movement > MAX_MOVEMENT) {

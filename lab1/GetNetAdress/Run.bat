@@ -26,8 +26,8 @@ if ERRORLEVEL 1 goto err
 fc %TMP_OUT% reference/invalid_ip_adress.txt
 if ERRORLEVEL 1 goto err
 
-%PROGRAM% 192.168.1.2 255.255.254.0 > %TMP_OUT%
-fc %TMP_OUT% reference/normal_result.txt
+%PROGRAM% "192.168.1.2" "255.255.254.0" > %TMP_OUT%
+fc %TMP_OUT% reference/192_168_0_0.txt
 if ERRORLEVEL 1 goto err
 
 echo:Program testing succeeded

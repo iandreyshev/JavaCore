@@ -16,7 +16,18 @@ class IPAdress {
 		m_thirdPart = Integer.parseInt(parts[2]);
 		m_fourthPart = Integer.parseInt(parts[3]);
 	}
-	public IPAdress(Integer first, Integer second, Integer third, Integer fourth) {
+	public IPAdress(Integer first, Integer second, Integer third, Integer fourth) throws IllegalArgumentException {
+		if (!isPartValid(first) ||
+			!isPartValid(second) ||
+			!isPartValid(third) ||
+			!isPartValid(fourth))
+		{
+			throw new IllegalArgumentException(
+				"Can not create ip adress.\n" +
+				"The part of ip adress(IPv4) can be only in randge" +
+				"[" + MIN_PART_VALUE.toString() + ", " + MAX_PART_VALUE.toString() + "]");
+		}
+
 		m_firstPart = first;
 		m_secondPart = second;
 		m_thirdPart = third;
@@ -44,13 +55,19 @@ class IPAdress {
 	private Integer m_thirdPart = 0;
 	private Integer m_fourthPart = 0;
 
+	private static final Integer MIN_PART_VALUE = 0;
+	private static final Integer MAX_PART_VALUE = 255;
 	private static final String NAME_PATTERN = (
 		"((25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(25[0-5]|2[0-4]\\d|[01]?\\d\\d?)");
 	private static final String SEPARATOR = "\\.";
 
+	private IPAdress() {}
 	private static boolean isNameValid(String name) {
 		Pattern pattern = Pattern.compile(NAME_PATTERN);
 		Matcher matcher = pattern.matcher(name);
 		return matcher.matches();
+	}
+	private static boolean isPartValid(Integer part) {
+		return part >= MIN_PART_VALUE && part <= MAX_PART_VALUE;
 	}
 }
